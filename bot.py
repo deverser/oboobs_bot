@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import telebot as tb
+from telebot import types
 import config
+import api_requests as ar
 
 
 """
@@ -14,6 +16,13 @@ bot = tb.TeleBot(config.token)
 def user_age_check(message):
     """Проверка пользователя на совершеннолетие"""
     bot.send_message(message.chat.id, text='Вам уже исполнилось 18 лет?')
+
+
+@bot.message_handler(commands=["boobs"])
+def send_last_boobs(message):
+    """Присылает пользователю самое свежее фото сисек с oboobs.ru"""
+    media_url = ar.get_boobs_url()
+    bot.send_photo(message.chat.id, media_url)
 
 
 if __name__ == '__main__':
