@@ -41,5 +41,12 @@ def send_last_boobs(message):
     bot.send_photo(message.chat.id, media_url)
 
 
+@bot.message_handler(commands=["random"])
+def send_random_boobs(message):
+    """Присылает пользователю рандомное фото сисек"""
+    media_url = ar.get_random_boobs()
+    bot.send_photo(message.chat.id, media_url)
+
+
 if __name__ == '__main__':
     bot.polling(none_stop=True)
