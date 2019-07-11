@@ -28,7 +28,10 @@ def get_random_boobs():
     count = boobs['count']
     photo_id = str(randint(1, count))
     file_info = get_response('boobs/get/' + photo_id)
-    return MEDIA + file_info['preview']
+    if not file_info:
+        get_random_boobs()
+    else:
+        return MEDIA + file_info['preview']
 
 
 if __name__ == "__main__":
