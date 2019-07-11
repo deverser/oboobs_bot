@@ -26,7 +26,7 @@ def get_random_boobs():
     """Получает URL-адрес рандомного фото сисек"""
     boobs = get_response(BOOBS_COUNT)
     count = boobs['count']
-    photo_id = str(randint(1, count))
+    photo_id = str(randint(1, count-1))
     file_info = get_response('boobs/get/' + photo_id)
     if not file_info:
         get_random_boobs()
@@ -35,5 +35,7 @@ def get_random_boobs():
 
 
 if __name__ == "__main__":
+    lb = get_boobs_url()
     rb = get_random_boobs()
+    print(lb)
     print(rb)
