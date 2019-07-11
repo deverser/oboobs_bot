@@ -14,12 +14,24 @@ bot = tb.TeleBot(config.token)
 keyboard = types.ReplyKeyboardMarkup(True, True, row_width=1)
 btn_y = types.KeyboardButton('Да, мне уже есть 18!')
 btn_n = types.KeyboardButton('Нет, я ещё слишком молод...')
-keyboard.row(btn_y, btn_n)
+keyboard.row(btn_y)
+keyboard.row(btn_n)
 
 @bot.message_handler(commands=["start"])
 def user_age_check(message):
     """Проверка пользователя на совершеннолетие"""
     bot.send_message(message.chat.id, text='Вам уже исполнилось 18 лет?', reply_markup=keyboard)
+
+
+# @bot.message_handler(content_types=["text"])
+# def bot_response_user(message):
+#     """Ответ юзеру при проверке на совершеннолетие"""
+#     if message.text == 'Да, мне уже есть 18!':
+#         bot.send_message(message.chat.id, text='Добро пожаловать! Вы можете пользоваться этим ботом :)')
+#     if message.text == 'Нет, я ещё слишком молод...':
+#         bot.send_message(message.chat.id, text='К сожалению вы не можете пользоваться моими услугами')
+    # elif message.text != '/boobs':
+    #     bot.send_message(message.chat.id, text='Я не понимаю вас. Нажмите /start и выберите ответ с помощью кнопок')
 
 
 @bot.message_handler(commands=["boobs"])
