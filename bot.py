@@ -11,22 +11,22 @@ import api_requests as ar
 экземпляра бота в строке ниже
 """ 
 bot = tb.TeleBot(config.token)
-keyboard = types.ReplyKeyboardMarkup(True, True, row_width=1)
-btn_y = types.KeyboardButton('Да, мне уже есть 18!')
-btn_n = types.KeyboardButton('Нет, я ещё слишком молод...')
-keyboard.row(btn_y)
-keyboard.row(btn_n)
 options_list = '/boobs - Присылает последнее фото сисек с сайта\n /random - Присылает рандомное фото сисек'
 
 
 @bot.message_handler(commands=["start"])
-def show_bot_options(message):
+def user_age_check(message):
     """Проверка пользователя на совершеннолетие"""
+    keyboard = types.ReplyKeyboardMarkup(True, True, row_width=1)
+    btn_y = types.KeyboardButton('Да, мне уже есть 18!')
+    btn_n = types.KeyboardButton('Нет, я ещё слишком молод...')
+    keyboard.row(btn_y)
+    keyboard.row(btn_n)
     bot.send_message(message.chat.id, text='Вам уже исполнилось 18 лет?', reply_markup=keyboard)
 
 
 @bot.message_handler(commands=["help"])
-def user_age_check(message):
+def show_bot_options(message):
     """Выводит инструкцию по всем командам бота"""
     bot.send_message(message.chat.id, text=options_list)
 # @bot.message_handler(content_types=["text"])
